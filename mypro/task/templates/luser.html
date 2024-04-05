@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+</head>
+<body>
+    <h1>User List</h1>
+    <ul>
+        {% for user in new %}
+            <li>{{ user.name }}</li>
+        {% empty %}
+            <li>No users found</li>
+        {% endfor %}
+    </ul>
+    {% if new.has_previous %}
+        <a href="?page=1">First</a>
+        <a href="?page={{ new.previous_page }}">Previous</a>
+    {% endif %}
+    <span>{{ new.number }}</span>
+    /
+    <span>{{ new.paginator.num_pages }}</span>
+    {% if new.has_next %}
+        <a href="?page={{ new.next_page }}">Next</a>
+        <a href="?page={{ new.paginator.num_pages }}">Last</a>
+    {% endif %}
+</body>
+</html>
